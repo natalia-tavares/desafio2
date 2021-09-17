@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <style> p {display:inline;} </style>    
+
+<head>
+    <title>Cálculo de salário</title>
+    <meta charset="UTF-8" />
+    <script type="text/javascript">
+
+        var funcionarios = [];
+        var elementos = ''
+
+        function calculaSalario() {
+            var name = document.getElementById("name").value;
+            var valor = document.getElementById("valor").value;
+            var quantidade = document.getElementById("quantidade").value;
+            var fixo = document.getElementById("fixo").value;
+            var funcionarioscontainer = document.getElementById("funcionarios")
+
+            var vendastotal = valor * quantidade;
+            var comissao = vendastotal * 15 / 100;
+            var salariofinal = Number(fixo) + Number(comissao);
+
+            var funcionario = {
+                name,
+                vendastotal,
+                comissao,
+                salariofinal
+            }
+
+
+            var element = `
+                <div>
+                    <p>${funcionario.name}</p>
+                    <p>${funcionario.vendastotal}</p>
+                    <p>${funcionario.comissao}</p>
+                    <p>${funcionario.salariofinal}</p>
+                </div>
+                `
+                funcionarioscontainer.innerHTML +=  element
+
+
+        }
+    </script>
+</head>
+
+<body>
+    <fieldset>
+        <legend>Cálculo do salário</legend>
+        <label> Nome funcionario: </label>
+        <input id="name" type="text" />
+        <label>Valor do produto:</label>
+        <input id="valor" type="number" />
+        <label>Quantidade de produtos:</label>
+        <input id="quantidade" type="number" />
+        <labeL> Salario Fixo: </labeL>
+        <input id="fixo" type="number" />
+        <button id="calcular" onclick="calculaSalario()">Calcular salário</button>
+    </fieldset>
+    <div id="funcionarios"> </div>
+</body>
+
+</html>
